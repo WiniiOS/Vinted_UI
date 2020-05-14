@@ -1,20 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title >
+        Vintee
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" padding>
+  <ion-list>
+    <ion-item (click)="showDetails(article.id)" *ngFor="let article of articles">
+      <ion-thumbnail slot="start">
+        <img (click)="showFullImage(article.pictures[0],article.title,$event)" [src]="article.pictures[0]">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description }}</p>
+        <p>{{ article.description.substr(0, 30) }}</p>
+        <p>{{ article.price | currency }}</p>
+        <p>
+        <span *ngIf="article.averageStar >=1"><ion-icon class="iconYellow" name="star"></ion-icon></span>
+        <span *ngIf="article.averageStar >=2"><ion-icon class="iconYellow" name="star"></ion-icon></span>
+        <span *ngIf="article.averageStar >=3"><ion-icon class="iconYellow" name="star"></ion-icon></span>
+        <span *ngIf="article.averageStar >=4"><ion-icon class="iconYellow" name="star"></ion-icon></span>
+        <span *ngIf="article.averageStar >=5"><ion-icon class="iconYellow" name="star"></ion-icon></span>
+      </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col push="1" col="10" >
+      <ion-button routerLink="/create-product" shape='round'>
+        <ion-icon name="camera"></ion-icon>&nbsp;
+        Vendre vos biens
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

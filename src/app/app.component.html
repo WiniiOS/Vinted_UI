@@ -1,3 +1,58 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
+<ion-app>  
+    <ion-menu content-id="main" menuId="main-menu">
+        <ion-header>
+            <ion-toolbar color="primary">
+                <ion-title>MenuShop</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content [fullscreen]="true">
+            <ion-list>
+                <ion-item-divider color="primary">Categories</ion-item-divider>
+                <ion-menu-toggle *ngFor="let category of categories">
+                    <ion-item>
+                        <ion-icon [name]="category.icon" slot="start"></ion-icon>
+                        <ion-label>
+                            <h2>{{category.title}}</h2>
+                            <p>{{category.description}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-item-divider color="primary">Mon Compte</ion-item-divider>
+                <ion-menu-toggle>
+                    <ion-item>
+                        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+                        <ion-label>
+                            <h2>Vintee</h2>
+                            <p>Vendez partout et c'est gratuit!</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item>
+                        <ion-icon name="mail" slot="start"></ion-icon>
+                        <ion-label>
+                            <h2>Boite de reception</h2>
+                            <p>Consultez vos notifications et messages!</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item routerLink="/cart">
+                        <ion-icon name="cart" slot="start"></ion-icon>
+                        <ion-label>
+                            <h2>Panier</h2>
+                            <p>Consultez votre panier!</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item>
+                        <ion-icon name="help-circle" slot="start"></ion-icon>
+                        <ion-label><h2>A propos</h2></ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+      </ion-menu>
+    <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

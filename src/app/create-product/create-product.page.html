@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ajouter un article</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <!-- ------- -->
+  <ion-item-divider color="primary">
+    <ion-icon name="images"></ion-icon>&nbsp;
+    Images du produit
+  </ion-item-divider>
+    <ion-grid>
+      <ion-row>
+        <ion-item *ngFor="let picture of myPictures; let i = index">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="picture"></ion-img>
+          </ion-thumbnail>
+          <ion-button slot="end" color="danger" size="small" (click)="delete( i)">
+            <ion-icon name="close-circle"></ion-icon>&nbsp;
+            Retirer
+          </ion-button>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+      <ion-col>
+          <ion-fab (click)="action()" horizontal="center">
+              <ion-fab-button>
+                  <ion-icon name="camera"></ion-icon>
+              </ion-fab-button>
+          </ion-fab>
+      </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-item-divider color="primary">
+    <ion-icon name="archive"></ion-icon>&nbsp;
+      Détails du produit
+  </ion-item-divider>
+  <!-- --------- -->
+  <!-- <ion-button expand="full" (click)="pickImages()">Ajouter Images</ion-button> -->
+  <ion-list>
+    <ion-item>
+      <ion-label for="nom" position="floating">Nom</ion-label>
+      <ion-input id="nom" type='text' [(ngModel)]="myProduct.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label for="desc"  position="floating">Description</ion-label>
+      <ion-input id="desc" type='text' [(ngModel)]="myProduct.description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label for="price" position="floating">Prix (en Dollars Americains)</ion-label>
+      <ion-input id="price" type='number' [(ngModel)]="myProduct.price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Categorie du produit</ion-label>
+      <ion-select [(ngModel)]="myProduct.categorie">
+        <ion-select-option [value]="cat.title" *ngFor="let cat of categories">
+          {{cat.title}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Votre ville</ion-label>
+      <ion-select [(ngModel)]="myProduct.city">
+        <ion-select-option [value]="city.name" *ngFor="let city of cities">
+          {{city.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider color="primary">
+      <ion-icon name="build" large></ion-icon>&nbsp;
+      Etat du produit
+    </ion-item-divider>
+    <ion-item>
+      <ion-label position="floating">Etat</ion-label>
+      <ion-select [(ngModel)]="myProduct.state">
+        <ion-select-option value='Neuf'>Neuf</ion-select-option>
+        <ion-select-option value='Déjà utilisé'>Déjà utilisé</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Mode d'acquisition</ion-label>
+      <ion-select [(ngModel)]="myProduct.availability.type">
+        <ion-select-option value="Livraison">Livraison</ion-select-option>
+        <ion-select-option value="Disponible en Magasin">Disponible en Magasin</ion-select-option>
+        <ion-select-option value="Main en Main">Main en Main</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="myProduct.availability.type === 'Livraison'">
+      <ion-label position="floating">Frais de livraison (en Dollars Americains)</ion-label>
+      <ion-input type='number' [(ngModel)]="myProduct.availability.feed"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="create(myProduct)">
+      <ion-icon slot="start" name="create"></ion-icon>&nbsp;&nbsp;
+      Créer
+    </ion-button>
+  </ion-list>
+</ion-content>

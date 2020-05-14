@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>Mon Panier</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item class="itemclass" *ngFor="let article of cartItems;let i = index">
+            <ion-thumbnail slot="start">
+              <img src="{{article.item.pictures[0]}}" (click)="showFullImage(article.item.pictures[0],article.item.title,$event)">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{article.item.title}}</h2>
+              <p>
+                <ion-badge color="secondary">{{article.qty}}</ion-badge> x <ion-badge color='gray!important'>{{ (article.item.price) | currency}}</ion-badge>
+              </p>
+              <p *ngIf="article.item.availability.feed">Livraison : {{ (article.item.availability.feed) |currency }}</p>
+              <p>Total : {{ ((article.qty*article.item.price) + (article.item.availability.feed)) | currency }}</p>
+              <ion-button class="contact--seller" (click)="navigate()">
+                <ion-icon name='mail'></ion-icon>&nbsp;
+                Contacter le vendeur
+              </ion-button >
+              <ion-button class="deleteCart" (click)="removeItem(article,i)" slot="end" color='danger'>
+                <ion-icon  name='trash-sharp'></ion-icon>
+             </ion-button>
+            </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button disabled="true" expand="block" fill="outline">Panier : {{total | currency}}</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="closeModal()">fermer</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

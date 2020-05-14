@@ -1,0 +1,21 @@
+ion-card{
+    width: 100vw !important;       //100 viewport width
+    margin: auto;
+}
+.myImg{
+    width: 70%;
+    margin: auto;
+}
+ion-button{
+    margin: auto !important;
+    width: 80%;
+    border-radius: 10px !important;
+}
+.iconYellow{
+    color: #f4e242;
+}
+.rating-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button defaultHref="/" text="Back"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >titre du message</ion-title> -->
+    <ion-title >Contacter le vendeur</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="toggleAction()" fill="outline">Répondre</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card >
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src='http://192.168.43.73:3000/api/Containers/photos/download/'></ion-img>
+        </ion-avatar>
+        <ion-label>Titre du message</ion-label>
+        <ion-note slot="end">date a laquelle le message a ete laisse</ion-note>
+      </ion-item>
+    
+      <ion-card-content>
+        Contenu du putain de message Contenu du putain de message
+
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer >
+  <ion-toolbar color="primary">
+    <ion-input class="message-editor" [(ngModel)]="msgContent" type="text" placeholder="Tapez votre message"></ion-input>
+    <ion-buttons slot="end">
+      <ion-button  (click)="send()" class="message-editor-button" color="light">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button (click)="contact()" class="message-editor-button" color="light">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
